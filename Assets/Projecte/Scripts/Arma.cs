@@ -20,7 +20,13 @@ public class Arma : MonoBehaviour
     public float cadency = 0.2f;
     public GameObject shootGO;
     public bool shoot = true;
-    public Camera camera;
+    private Camera mainCamera;
+
+    Ray ray;
+    RaycastHit hit;
+    private int distance = 50;
+
+    private EnemyBehaviour enemy;
 
 
     void Awake()
@@ -31,7 +37,9 @@ public class Arma : MonoBehaviour
         */
 
         controls = new PlayerControls();
-        
+        mainCamera = Camera.main;
+        enemy = GameObject.FindGameObjectWithTag("Enemy").GetComponent<EnemyBehaviour>();
+
     }
 
     private void OnEnable()
@@ -82,6 +90,7 @@ public class Arma : MonoBehaviour
             }
         }
 
+        //PointingEnemy();
     }
 
     public void Shoot()
@@ -93,10 +102,8 @@ public class Arma : MonoBehaviour
 
         shoot = false;
         GameObject bulletObject = Instantiate(shootGO, transform.position, Quaternion.identity);
-        bulletObject.transform.forward = camera.transform.forward;
+        bulletObject.transform.forward = mainCamera.transform.forward;
 
     }
-
-
 
 }

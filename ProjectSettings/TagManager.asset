@@ -5,6 +5,10 @@ TagManager:
   serializedVersion: 2
   tags:
   - Ground
+  - Boundaries
+  - Enemy
+  - Bullet
+  - Point
   layers:
   - Default
   - TransparentFX
