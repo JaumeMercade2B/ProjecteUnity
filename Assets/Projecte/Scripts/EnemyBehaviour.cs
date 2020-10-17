@@ -7,18 +7,30 @@ using UnityEngine.UI;
 public class EnemyBehaviour : MonoBehaviour
 {
 
-    public float life = 3;
-    public float maxLife = 3;
+    public float life;
+    public float maxLife;
 
     public GameObject lifeBarUI;
     public Slider slider;
 
+    //private Arma weapon;
+    //private Mele mele;
+
+    private Collider col;
+
+    public GameObject malla;
 
     // Start is called before the first frame update
     void Start()
     {
+
+       
         life = maxLife;
         slider.value = CalculateHealth();
+        col = GetComponent<Collider>();
+
+        //weapon = GameObject.FindGameObjectWithTag("Point").GetComponent<Arma>();
+        //mele = GameObject.FindGameObjectWithTag("Mele").GetComponent<Mele>();
     }
 
     // Update is called once per frame
@@ -54,7 +66,13 @@ public class EnemyBehaviour : MonoBehaviour
     {
         if (life <= 0)
         {
-            Destroy(gameObject);
+            col.enabled = false;
+
+            foreach (Transform child in transform)
+            {
+                GameObject.Destroy(child.gameObject);
+
+            }
         }
     }
 
@@ -73,5 +91,8 @@ public class EnemyBehaviour : MonoBehaviour
             DesBar();
         }
     }
+
+
+
 
 }

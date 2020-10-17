@@ -18,9 +18,17 @@ public class Arma : MonoBehaviour
 
     private float timeCounter;
     public float cadency = 0.2f;
+    public float damage = 1;
+    public float ammo = 10;
+    private float maxAmmo = 10;
+    public float reloadTime = 3;
+    public bool reloading;
+
     public GameObject shootGO;
     public bool shoot = true;
     private Camera mainCamera;
+
+    private GameManager manager;
 
     Ray ray;
     RaycastHit hit;
@@ -28,6 +36,9 @@ public class Arma : MonoBehaviour
 
     private EnemyBehaviour enemy;
 
+    private HUD hud;
+
+    private ChangeWeapon change;
 
     void Awake()
     {
@@ -38,8 +49,29 @@ public class Arma : MonoBehaviour
 
         controls = new PlayerControls();
         mainCamera = Camera.main;
-        enemy = GameObject.FindGameObjectWithTag("Enemy").GetComponent<EnemyBehaviour>();
 
+        manager = GameObject.FindGameObjectWithTag("Manager").GetComponent < GameManager > ();
+
+        ammo = maxAmmo;
+        reloading = false;
+
+        hud = GameObject.FindGameObjectWithTag("HUD").GetComponent<HUD>();
+        change = GameObject.FindGameObjectWithTag("Holder").GetComponent<ChangeWeapon>();
+
+        hud.SetAmmoText(ammo);
+    }
+
+    public void Update()
+    {
+        if (change.ReturnCurrent() == 0)
+        {
+            gameObject.SetActive(true);
+        }
+
+        else if (change.ReturnCurrent() != 0)
+        {
+            gameObject.SetActive(false);
+        }
     }
 
     private void OnEnable()
@@ -85,8 +117,18 @@ public class Arma : MonoBehaviour
             timeCounter += Time.deltaTime;
             if (timeCounter >= cadency)
             {
-                shoot = true;
-                timeCounter = 0;
+
+                if (ammo > 0 && reloading == false)
+                {
+                    shoot = true;
+                    timeCounter = 0;
+                }
+
+                else
+                {
+                    Reload();
+                }
+                
             }
         }
 
@@ -100,9 +142,37 @@ public class Arma : MonoBehaviour
             return;
         }
 
-        shoot = false;
-        GameObject bulletObject = Instantiate(shootGO, transform.position, Quaternion.identity);
-        bulletObject.transform.forward = mainCamera.transform.forward;
+        if (manager.pause == false && reloading == false)
+        {
+            shoot = false;
+            GameObject bulletObject = Instantiate(shootGO, transform.position, Quaternion.identity) as GameObject;
+            bulletObject.transform.forward = mainCamera.transform.forward;
+            ammo--;
+            hud.SetAmmoText(ammo);
+        }
+
+
+    }
+
+    public void Reload()
+    {
+        if (reloading || ammo == maxAmmo)
+        {
+            return;
+        }
+
+        reloading = true;
+        StartCoroutine(WaitForReload());
+    }
+
+
+    IEnumerator WaitForReload()
+    {
+
+        yield return new WaitForSeconds(reloadTime);
+        ammo = maxAmmo;        
+        reloading = false;
+        hud.SetAmmoText(ammo);
 
     }
 

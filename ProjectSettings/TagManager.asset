@@ -9,6 +9,13 @@ TagManager:
   - Enemy
   - Bullet
   - Point
+  - HUD
+  - Manager
+  - Mele
+  - Arma
+  - Metralleta
+  - Slider
+  - Holder
   layers:
   - Default
   - TransparentFX

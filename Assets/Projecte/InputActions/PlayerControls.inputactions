@@ -46,12 +46,36 @@
                     "interactions": ""
                 },
                 {
+                    "name": "Mele",
+                    "type": "Button",
+                    "id": "19b7b8d5-9d82-43b1-a338-c227b892b9d1",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Tap"
+                },
+                {
                     "name": "Pause",
                     "type": "Button",
                     "id": "236d2257-c647-44b0-b3bd-9a2249d1e8a4",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "Reload",
+                    "type": "Button",
+                    "id": "4eea97ea-019b-4e2b-942e-b3906d925e52",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Tap"
+                },
+                {
+                    "name": "ChangeWeaponRight",
+                    "type": "Button",
+                    "id": "611aa966-2e9a-40b1-8e21-f9b2956b3a1d",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press"
                 }
             ],
             "bindings": [
@@ -191,7 +215,7 @@
                     "name": "",
                     "id": "551657e9-4826-40e7-bbef-65702c944deb",
                     "path": "<Mouse>/leftButton",
-                    "interactions": "Tap",
+                    "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "Shoot",
@@ -206,6 +230,66 @@
                     "processors": "",
                     "groups": "",
                     "action": "Pause",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "838451b1-79eb-4d92-ac13-4093a7ef9968",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Mele",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "626e8a9b-b000-4baa-baf2-498d1ecf0eb1",
+                    "path": "<Keyboard>/r",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Reload",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "77136e18-5b1c-4e10-8474-48b6cf0085a0",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ChangeWeaponRight",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "UI",
+            "id": "ab125594-1f63-4856-bc78-9410c9b80845",
+            "actions": [
+                {
+                    "name": "Click",
+                    "type": "Button",
+                    "id": "f5c410dd-36bd-497f-a80c-43c21ebb3302",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Tap"
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "25b7869a-2475-4f68-bf51-bdc8e619dccc",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Click",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

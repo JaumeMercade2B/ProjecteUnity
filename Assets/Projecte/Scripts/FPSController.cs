@@ -30,10 +30,6 @@ public class FPSController : MonoBehaviour
     //DASH
     public float dashSpeed = 1.0f;
 
-    //Shoot
-    private Arma arma;
-
-
     // Start is called before the first frame update
     void Awake()
     {
@@ -41,6 +37,11 @@ public class FPSController : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
 
         rb = GetComponent<Rigidbody>();
+
+
+
+        //arma =GameObject.FindGameObjectWithTag("Arma").GetComponent<Arma>();
+        //metralleta = GameObject.FindGameObjectWithTag("Metralleta").GetComponent<Metralleta>();
 
     }
 
@@ -176,5 +177,5 @@ public class FPSController : MonoBehaviour
             isGrounded = false;
         }
     }
-
+    
 }

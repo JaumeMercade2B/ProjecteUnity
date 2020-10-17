@@ -4,8 +4,14 @@ using UnityEngine;
 
 public class BulletBehaviour : MonoBehaviour
 {
-    public float speed = 30;
+    public float speed = 30f;
+    public float range;
+    public float maxRange;
     public float damage = 1;
+
+    public GameObject explosionPrefab;
+    
+
     private EnemyBehaviour  enemy;
 
 
@@ -19,13 +25,19 @@ public class BulletBehaviour : MonoBehaviour
     void Update()
     {
         transform.position += transform.forward * speed * Time.deltaTime;
+
+        range += Time.deltaTime;
+
+        if (range >= maxRange)
+        {
+            Destroy(gameObject);
+        }
     }
 
     public void OnTriggerExit(Collider collision)
     {
         if (collision.tag == "Boundaries")
         {
-            Debug.Log("Boundarie");
             Destroy(gameObject);
         }
     }
@@ -34,16 +46,17 @@ public class BulletBehaviour : MonoBehaviour
     {
         if (other.tag == "Ground")
         {
+           
+           
             Destroy(gameObject);
         }
 
         if (other.tag == "Enemy")
         {
-
-            Destroy(gameObject);
             enemy.GetDamage(damage);
-            
+            Destroy(gameObject);
         }
+
     }
 
 
