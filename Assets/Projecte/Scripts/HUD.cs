@@ -12,10 +12,13 @@ public class HUD : MonoBehaviour
     public GameObject hudArma;
     public GameObject hudMetralleta;
     private ChangeWeapon change;
+    public Slider playerLife;
+   
 
     public void Awake()
     {
         change = GameObject.FindGameObjectWithTag("Holder").GetComponent<ChangeWeapon>();
+        
     }
 
     public void Update()
@@ -51,6 +54,8 @@ public class HUD : MonoBehaviour
     {
         metralletaText.text = ammo.ToString() + " - " + maxAmmo.ToString(); ;
     }
+
+   
 
     public void OpenPausePanel(bool pause)
     {

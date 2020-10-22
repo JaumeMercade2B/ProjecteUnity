@@ -18,7 +18,7 @@ public class Mele : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         col = GetComponent<Collider>();
-        enemy = GameObject.FindGameObjectWithTag("Enemy").GetComponent<EnemyBehaviour>();
+        
     }
 
     // Update is called once per frame
@@ -61,7 +61,12 @@ public class Mele : MonoBehaviour
     {
         if (other.tag == ("Enemy"))
         {
-            enemy.GetDamage(damage);
+            //if (isAttacking)
+            //{
+                enemy = other.gameObject.GetComponent<EnemyBehaviour>();
+                enemy.GetDamage(damage);
+            //}
+  
         }
     }
 
@@ -74,8 +79,8 @@ public class Mele : MonoBehaviour
 
     }
 
-    public bool GetAttack()
-    {
-        return isAttacking;
-    }
+    //public bool GetAttack()
+    //{
+    //    return isAttacking;
+    //}
 }

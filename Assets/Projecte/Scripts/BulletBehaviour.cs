@@ -9,20 +9,21 @@ public class BulletBehaviour : MonoBehaviour
     public float maxRange;
     public float damage = 1;
 
-    public GameObject explosionPrefab;
+    //public GameObject explosionPrefab;
     
 
     private EnemyBehaviour  enemy;
+    private FPSController player;
 
 
     // Start is called before the first frame update
     void Start()
     {
-        enemy = GameObject.FindGameObjectWithTag("Enemy").GetComponent<EnemyBehaviour>();
+
     }
 
     // Update is called once per frame
-    void Update()
+    virtual public void Update()
     {
         transform.position += transform.forward * speed * Time.deltaTime;
 
@@ -53,7 +54,15 @@ public class BulletBehaviour : MonoBehaviour
 
         if (other.tag == "Enemy")
         {
+            enemy = other.gameObject.GetComponent<EnemyBehaviour>();
             enemy.GetDamage(damage);
+            Destroy(gameObject);
+        }
+
+        if (other.tag == "Player")
+        {
+            player = other.gameObject.GetComponent<FPSController>();
+            player.GetDamage(damage);
             Destroy(gameObject);
         }
 
